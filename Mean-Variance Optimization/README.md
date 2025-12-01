@@ -9,29 +9,45 @@ The following optimization task are performed:
    - Construction of the efficient frontier
    - Selecting a portfolio that **maximizes return** for a chosen volatility
    - Plotting the frontier with optimal point
+
 # Mathematical Formulation
 1. Minimum-Variance Portfolio<br>
 
 The objective function for this prblem is:<br>
 <div align="center">
   
-$$\min_{w} w^T \Sigma w$$ 
+$$\min_{w}\ \ w^T \Sigma w$$ 
 
 </div>
-Subject to:<br>
+
+subject to:<br>
 
 $$
-\Sigma_{i} w_{i} = 1, w_{i} \ge 0
+\Sigma_{i} w_{i} = 1,\ \ w_{i} \ge 0
+$$
+
+For the bounded constraint version of MVP, the second constraint will become: <br>
+
+$$
+0 \le w \le 0.15
 $$
 
 2. Maximum-Return Portfolio at Target Risk<br>
 
 The objective function for this problem is:<br>
+
 $$
-max_{w} \mu^T w
+\max_{w} \ \ \mu^T  w
 $$
 
-For the bounded constraint version of MVP, the constraint will be: <br>
+subject to:<br>
+
 $$
-0 \le w \le 0.15
+w^T \Sigma w \le \sigma^2_{target},\ \ \Sigma_{i} w_{i} = 1,\ \ w_{i} \ge 0
 $$
+
+#Results
+The unconstarint solution produces the following results:
+- **Expected Annual Return = 10.4%**
+- **Expected Annual volatility = 15.1%**
+For weights, please check the complete solution file.
