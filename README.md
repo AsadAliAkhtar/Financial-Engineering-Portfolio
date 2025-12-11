@@ -94,7 +94,7 @@ Each project directory contains:
 **Master of Science in Financial Engineering**  
 WorldQuant University | *In Progress*
 
-Relevant coursework in quantitative finance, portfolio management, derivatives pricing, and computational finance.
+Relevant coursework in Financial Markets, Financial Data, Financial Econometrics, Derivative Pricing, Stochastic Modeling, Machine Learning, Deep Learning, Portfolio Management, Risk Management.
 
 ---
 
