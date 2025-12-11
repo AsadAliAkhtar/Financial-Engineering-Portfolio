@@ -50,20 +50,6 @@ An implementation of the Black-Litterman model that combines market equilibrium 
 - Bayesian framework for combining prior beliefs with subjective forecasts
 - Optimization using Maximum Sharpe Ratio and Maximum Quadratic Utility
 
-**Technical Stack:**
-- Python (NumPy, Pandas, Matplotlib)
-- PyPortfolioOpt for optimization
-- yfinance for market data
-- FRED API for risk-free rate data
-
-**Skills Demonstrated:**
-- Advanced portfolio theory (CAPM, Bayesian methods)
-- Optimization under constraints
-- Financial data acquisition and preprocessing
-- Professional documentation and visualization
-
-📖 [View Project Details](./Black-Litterman-Portfolio-Allocation/README.md)
-
 ---
 
 ### 2. [Mean-Variance Portfolio Optimization](./Mean-Variance-Optimization)
@@ -78,20 +64,6 @@ Implementation of Markowitz mean-variance optimization framework using both cons
 - Comparison of constrained vs. unconstrained portfolios
 - Maximum return portfolio at target volatility
 
-**Technical Stack:**
-- Python (NumPy, Pandas, Matplotlib)
-- CVXPY for convex optimization
-- PyPortfolioOpt for efficient frontier
-- yfinance for historical price data
-
-**Skills Demonstrated:**
-- Convex optimization techniques
-- Portfolio theory (Markowitz framework)
-- Risk-return tradeoff analysis
-- Constraint handling in optimization problems
-
-📖 [View Project Details](./Mean-Variance-Optimization/README.md)
-
 ---
 
 ## 🛠️ Technical Skills
@@ -105,26 +77,6 @@ Implementation of Markowitz mean-variance optimization framework using both cons
 - **Optimization Libraries**: CVXPY, PyPortfolioOpt
 - **Data Sources**: yfinance, FRED API, pandas-datareader
 - **Development**: Jupyter Notebooks, Git version control
-
-### Financial Engineering Expertise
-
-**Portfolio Theory & Optimization**
-- Mean-Variance Optimization (Markowitz)
-- Black-Litterman Model
-- Risk-adjusted performance metrics (Sharpe Ratio)
-- Efficient frontier construction
-
-**Quantitative Methods**
-- Convex optimization
-- Bayesian inference
-- Covariance estimation
-- Risk modeling
-
-**Financial Concepts**
-- Capital Asset Pricing Model (CAPM)
-- Modern Portfolio Theory
-- Risk-return tradeoffs
-- Market equilibrium theory
 
 ---
 
@@ -154,7 +106,6 @@ I'm continuously expanding this portfolio with new projects. Planned additions i
 - **Risk Management** - VaR, CVaR, stress testing
 - **Time Series Analysis** - ARIMA, GARCH models for volatility
 - **Factor Models** - Fama-French, momentum strategies
-- **Fixed Income** - Bond pricing, duration, immunization
 - **Machine Learning in Finance** - Predictive models for returns
 
 ---
@@ -164,8 +115,7 @@ I'm continuously expanding this portfolio with new projects. Planned additions i
 I'm always open to discussing quantitative finance, collaboration opportunities, or career prospects in financial engineering.
 
 - **LinkedIn:** [linkedin.com/in/asadaliakhtar](https://www.linkedin.com/in/asadaliakhtar)
-- **Location:** Multan, Punjab, Pakistan
-- **Email:** [Available on LinkedIn]
+- **Location:** Pakistan
 
 ---
 
@@ -180,12 +130,6 @@ This portfolio demonstrates:
 ✅ **Continuous learning** - Ongoing master's degree and commitment to professional certifications
 
 Each project can be reproduced and extended. I welcome questions, feedback, and opportunities to discuss this work.
-
----
-
-## 📄 License
-
-This repository is available for educational and demonstration purposes. Please contact me for any commercial use or collaboration inquiries.
 
 ---
 
