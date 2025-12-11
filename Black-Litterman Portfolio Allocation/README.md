@@ -8,14 +8,6 @@ Unlike traditional mean-variance optimization that relies solely on historical r
 
 The project uses real historical price data of large-cap U.S. equities and implements both absolute and relative views to demonstrate the model's flexibility.
 
-## Key Features
-1. **Market Equilibrium Returns (Prior)** - Derived from market capitalization weights using reverse optimization
-2. **Investor Views Integration** - Incorporates both absolute and relative performance expectations
-3. **Bayesian Framework** - Combines prior beliefs with views using confidence-weighted updating
-4. **Portfolio Optimization** - Generates optimal weights using:
-   - Maximum Sharpe Ratio (tangency portfolio)
-   - Maximum Quadratic Utility (risk-adjusted for investor's risk aversion)
-
 # Mathematical Formulation
 
 ## 1. Market Equilibrium Return (Prior)
@@ -90,19 +82,19 @@ The portfolio consists of 8 large-cap U.S. equities:
 - **JNJ** - Johnson & Johnson
 
 ## Time Period
-- **Start Date**: January 1, 2016
-- **End Date**: December 30, 2024
-- **Duration**: ~9 years of daily price data (2,262 observations)
+- **Start Date**: January 1, 2020
+- **End Date**: October 30, 2025
+- **Duration**: ~6 years of daily price data
 
 ## Market Benchmark
 - **S&P 500 Index** (^GSPC) - Used for calculating market-implied risk aversion
 
 ## Risk-Free Rate
 - **3-Month U.S. Treasury Bills** (DGS3MO) - Retrieved via FRED API
-- **Average Rate**: 2.03% (annualized)
+- **Average Rate**: 2.75% (annualized)
 
 ## Model Parameters
-- **Risk Aversion (λ)**: 3.59 (market-implied)
+- **Risk Aversion (λ)**: 2.75 (market-implied)
 - **Tau (τ)**: 0.1
 - **Weight Bounds**: 0% to 20% per asset
 
@@ -112,10 +104,10 @@ The following hypothetical views were incorporated:
 
 | View Type | Description | Specification |
 |-----------|-------------|---------------|
-| **Absolute** | NVDA will increase by 5% | $Q_1 = \Pi_{NVDA} + 0.05$ |
-| **Absolute** | PG will decrease by 2% | $Q_2 = \Pi_{PG} - 0.02$ |
-| **Relative** | AMZN will outperform XOM by 3% | $Q_3 = 0.03$ |
-| **Relative** | JPM will outperform JNJ by 2% | $Q_4 = 0.02$ |
+| **Absolute** | NVDA will perform 5% better than equilibrium | $Q_1 = \Pi_{NVDA} + 0.05$ |
+| **Absolute** | PG will downperform 2% by equilibrium | $Q_2 = \Pi_{PG} - 0.02$ |
+| **Relative** | AMZN will perform better by 3% with respect to XOM | $Q_3 = 0.03$ |
+| **Relative** | JPM will perform better by 2% with respect to JNJ | $Q_4 = 0.02$ |
 
 # Results
 
@@ -134,7 +126,7 @@ The implied equilibrium excess returns (annualized) are:
 | PG | 8.26% |
 | JNJ | 7.76% |
 
-![Market Equilibrium Returns](./market_equilibrium_returns.png)
+![Market Equilibrium Returns](./Market.png)
 
 ## Black-Litterman Posterior Returns
 
