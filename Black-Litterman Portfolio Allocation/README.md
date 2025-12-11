@@ -126,7 +126,7 @@ The implied equilibrium excess returns (annualized) are:
 | PG | 8.26% |
 | JNJ | 7.76% |
 
-[Market Equilibrium Returns](./Market_Equilibrium_Returns.png)
+![Market Equilibrium Returns](./Market_Equilibrium_Returns.jpg)
 
 ## Black-Litterman Posterior Returns
 
@@ -153,18 +153,18 @@ Notable changes:
 ### Maximum Quadratic Utility Portfolio
 The final portfolio weights based on risk-adjusted optimization are:
 
-| Asset | Weight | Allocation |
-|-------|--------|------------|
-| **AAPL** | 20.00% | ████████████████████ |
-| **AMZN** | 20.00% | ████████████████████ |
-| **GOOGL** | 20.00% | ████████████████████ |
-| **XOM** | 15.88% | ███████████████▉ |
-| **JNJ** | 10.92% | ██████████▉ |
-| **NVDA** | 7.81% | ███████▊ |
-| **JPM** | 5.39% | █████▍ |
-| **PG** | 0.00% | |
+| Asset | Weight |
+|-------|--------|
+| **AAPL** | 20.00% |
+| **AMZN** | 20.00% |
+| **GOOGL** | 20.00% |
+| **XOM** | 15.88% |
+| **JNJ** | 10.92% |
+| **NVDA** | 7.81% |
+| **JPM** | 5.39% |
+| **PG** | 0.00% |
 
-![Portfolio Allocation](./portfolio_allocation.png)
+![Portfolio Allocation](./Portfolio_Allocation.jpg)
 
 ### Key Insights
 
@@ -184,8 +184,6 @@ For comparison, the tangency portfolio (maximum Sharpe ratio) produces:
 - Different risk-return tradeoff
 - May be preferred by more risk-tolerant investors
 
-# Implementation Details
-
 ## Tools and Libraries
 - **Python 3.x** - Core programming language
 - **PyPortfolioOpt** - Black-Litterman model implementation and optimization
@@ -194,61 +192,3 @@ For comparison, the tangency portfolio (maximum Sharpe ratio) produces:
 - **FRED API** - Risk-free rate data (3-Month T-Bills)
 - **Matplotlib** - Data visualization
 - **python-dotenv** - Environment variable management
-
-## Key Functions Used
-```python
-# Market-implied risk aversion
-black_litterman.market_implied_risk_aversion()
-
-# Prior returns from market caps
-black_litterman.market_implied_prior_returns()
-
-# Confidence matrix
-BlackLittermanModel.default_omega()
-
-# Black-Litterman posterior
-BlackLittermanModel.bl_returns()
-
-# Portfolio optimization
-EfficientFrontier.max_quadratic_utility()
-```
-
-# Advantages of Black-Litterman
-
-1. **Stability**: Less sensitive to estimation errors than traditional mean-variance optimization
-2. **Intuitive**: Starts from market equilibrium (neutral position)
-3. **Flexible**: Allows partial views on any subset of assets
-4. **Confidence-Weighted**: Views can be expressed with varying degrees of certainty
-5. **Diversified**: Produces well-diversified portfolios without extreme positions
-
-# Limitations and Considerations
-
-1. **View Specification**: Requires careful formulation of views with appropriate confidence levels
-2. **Parameter Sensitivity**: Results depend on tau (τ) selection, though impact is often limited
-3. **Market Cap Timing**: Current implementation uses recent market caps with historical data (potential mismatch)
-4. **Historical Covariance**: Assumes past correlations persist into the future
-
-# Future Enhancements
-
-- [ ] Sensitivity analysis for tau (τ) parameter
-- [ ] Rolling window implementation for time-varying allocations
-- [ ] Comparison with traditional mean-variance optimization
-- [ ] Out-of-sample backtesting
-- [ ] Transaction cost integration
-- [ ] Dynamic view updating based on market signals
-
-# References
-
-1. Black, F., & Litterman, R. (1992). "Global Portfolio Optimization." *Financial Analysts Journal*, 48(5), 28-43.
-2. He, G., & Litterman, R. (1999). "The Intuition Behind Black-Litterman Model Portfolios." *Investment Management Research*, Goldman Sachs.
-3. Idzorek, T. (2005). "A Step-by-Step Guide to the Black-Litterman Model." *Zephyr Associates*.
-
-# License
-
-This project is available for educational and research purposes.
-
----
-
-**Author**: [Your Name]  
-**Date**: December 11, 2025  
-**Contact**: [Your Email/GitHub]
