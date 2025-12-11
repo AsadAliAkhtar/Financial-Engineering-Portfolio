@@ -52,7 +52,7 @@ An implementation of the Black-Litterman model that combines market equilibrium 
 
 ---
 
-### 2. [Mean-Variance Portfolio Optimization](./Mean-Variance-Optimization)
+### 2. [Mean-Variance Portfolio Optimization](./Mean-Variance%20Optimization)
 
 **Status:** ✅ Completed
 
