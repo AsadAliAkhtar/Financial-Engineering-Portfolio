@@ -38,7 +38,7 @@ Each project includes:
 
 ## 📚 Projects
 
-### 1. [Black-Litterman Portfolio Allocation](./Black-Litterman-Portfolio-Allocation)
+### 1. [Black-Litterman Portfolio Allocation](./Black-Litterman%20Portfolio%20Allocation)
 
 **Status:** ✅ Completed
 
