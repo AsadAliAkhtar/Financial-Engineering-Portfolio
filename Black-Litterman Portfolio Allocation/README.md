@@ -170,19 +170,14 @@ The final portfolio weights based on risk-adjusted optimization are:
 
 1. **Technology Dominance**: AAPL, AMZN, and GOOGL each hit the 20% upper bound, comprising 60% of the portfolio due to their strong risk-adjusted returns.
 
-2. **NVDA's Limited Allocation**: Despite a positive 5% view and high equilibrium return (44.5%), NVDA receives only 7.81% allocation due to its **significantly higher volatility** (variance = 0.249, nearly 3× other assets). The optimizer balances return potential against risk.
+2. **NVDA's Limited Allocation**: Despite a positive 5% view and high equilibrium return (44.5%), NVDA receives only 7.74% allocation due to its **significantly higher volatility** (variance = 0.249, nearly 3× other assets). The optimizer balances return potential against risk.
 
 3. **PG Excluded**: The negative view (-2%) combined with low equilibrium return (8.26%) resulted in zero allocation.
 
-4. **Diversification Benefits**: JNJ (10.92%) provides valuable diversification despite lower returns due to low correlation with tech stocks.
+4. **Diversification Benefits**: JNJ (12.36%) provides valuable diversification despite lower returns due to low correlation with tech stocks.
 
-5. **Energy Exposure**: XOM (15.88%) offers diversification and inflation protection with moderate returns.
+5. **Energy Exposure**: XOM (14.24%) offers diversification and inflation protection with moderate returns.
 
-### Alternative: Maximum Sharpe Ratio Portfolio
-For comparison, the tangency portfolio (maximum Sharpe ratio) produces:
-- Similar concentration in AMZN (25.00%)
-- Different risk-return tradeoff
-- May be preferred by more risk-tolerant investors
 
 ## Tools and Libraries
 - **Python 3.x** - Core programming language
