@@ -126,7 +126,7 @@ The implied equilibrium excess returns (annualized) are:
 | PG | 8.26% |
 | JNJ | 7.76% |
 
-![Market Equilibrium Returns](./Market.png)
+[Market Equilibrium Returns](./Market_Equilibrium_Returns.png)
 
 ## Black-Litterman Posterior Returns
 
