@@ -40,8 +40,6 @@ Each project includes:
 
 ### 1. [Black-Litterman Portfolio Allocation](./Black-Litterman%20Portfolio%20Allocation)
 
-**Status:** ✅ Completed
-
 An implementation of the Black-Litterman model that combines market equilibrium returns with investor-specific views to generate optimal portfolio allocations.
 
 **Key Features:**
@@ -53,8 +51,6 @@ An implementation of the Black-Litterman model that combines market equilibrium 
 ---
 
 ### 2. [Mean-Variance Portfolio Optimization](./Mean-Variance%20Optimization)
-
-**Status:** ✅ Completed
 
 Implementation of Markowitz mean-variance optimization framework using both constrained and unconstrained approaches.
 
