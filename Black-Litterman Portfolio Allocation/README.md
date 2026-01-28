@@ -187,3 +187,9 @@ The final portfolio weights based on risk-adjusted optimization are:
 - **FRED API** - Risk-free rate data (3-Month T-Bills)
 - **Matplotlib** - Data visualization
 - **python-dotenv** - Environment variable management
+ 
+## Author
+
+**Asad Ali Akhtar**
+
+
