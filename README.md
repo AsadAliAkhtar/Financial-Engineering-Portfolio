@@ -38,7 +38,32 @@ Each project includes:
 
 ## 📚 Projects
 
-### 1. [Black-Litterman Portfolio Allocation](./Black-Litterman%20Portfolio%20Allocation)
+### 1. [Single Asset Risk and Return Analysis](./Single%20Asset%20Risk%20and%20Return%20Analysis)
+
+A comprehensive analysis of risk and return characteristics for the S&P 500 Index, examining historical performance across different market regimes, including pre-COVID stability, pandemic volatility, and post-pandemic recovery.
+
+**Key Features:**
+- Annualized return and volatility calculations using historical data (2017-2025)
+- Rolling volatility analysis to capture time-varying risk dynamics
+- Value at Risk (VaR) estimation using the historical simulation method
+- Visualization of price movements, daily returns, and volatility clustering patterns
+- Downside risk assessment at 95\% and 99\% confidence levels
+
+---
+
+### 2. [Mean-Variance Portfolio Optimization](./Mean-Variance%20Optimization)
+
+Implementation of the Markowitz mean-variance optimization framework using both constrained and unconstrained approaches.
+
+**Key Features:**
+- Minimum-Variance Portfolio (MVP) construction
+- Efficient Frontier generation and analysis
+- Comparison of constrained vs. unconstrained portfolios
+- Maximum return portfolio at target volatility
+
+---
+
+### 3. [Black-Litterman Portfolio Allocation](./Black-Litterman%20Portfolio%20Allocation)
 
 An implementation of the Black-Litterman model that combines market equilibrium returns with investor-specific views to generate optimal portfolio allocations.
 
@@ -47,18 +72,6 @@ An implementation of the Black-Litterman model that combines market equilibrium 
 - Integration of both absolute and relative investor views
 - Bayesian framework for combining prior beliefs with subjective forecasts
 - Optimization using Maximum Sharpe Ratio and Maximum Quadratic Utility
-
----
-
-### 2. [Mean-Variance Portfolio Optimization](./Mean-Variance%20Optimization)
-
-Implementation of Markowitz mean-variance optimization framework using both constrained and unconstrained approaches.
-
-**Key Features:**
-- Minimum-Variance Portfolio (MVP) construction
-- Efficient Frontier generation and analysis
-- Comparison of constrained vs. unconstrained portfolios
-- Maximum return portfolio at target volatility
 
 ---
 
