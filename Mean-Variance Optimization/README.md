@@ -86,3 +86,9 @@ The chosen point lies on the convex boundary of feasible portfolios, confirming 
 - **Numpy/Pandas** - Data handling
 - **Matplotlib** - Visualization
 - **yfinance** - Data fetching
+
+ 
+## Author
+
+**Asad Ali Akhtar**
+
