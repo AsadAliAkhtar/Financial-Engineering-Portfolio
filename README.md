@@ -51,7 +51,19 @@ A comprehensive analysis of risk and return characteristics for the S&P 500 Inde
 
 ---
 
-### 2. [Mean-Variance Portfolio Optimization](./Mean-Variance%20Optimization)
+### 2. [Volatility Modeling and Forecasting of AAPL Using GARCH](./Volatility%20Modeling%20and%20Forecasting%20of%20AAPL%20Using%20GARCH)
+Application of GARCH (Generalized Autoregressive Conditional Heteroskedasticity) modeling to forecast time-varying volatility in Apple stock returns over a 11-year period (2015-2025), capturing volatility clustering.
+
+**Key Features:**
+- GARCH(1,1) model estimation with normal distribution
+- Pre-modeling diagnostics including ARCH LM test and ACF/PACF analysis
+- Walk-forward validation with 553 out-of-sample forecasts using expanding window methodology
+- Ljung-Box tests confirming model adequacy and absence of remaining ARCH effects
+- Benchmark comparison against rolling volatility (6% RMSE improvement)
+
+---
+
+### 3. [Mean-Variance Portfolio Optimization](./Mean-Variance%20Optimization)
 
 Implementation of the Markowitz mean-variance optimization framework using both constrained and unconstrained approaches.
 
@@ -63,7 +75,7 @@ Implementation of the Markowitz mean-variance optimization framework using both 
 
 ---
 
-### 3. [Black-Litterman Portfolio Allocation](./Black-Litterman%20Portfolio%20Allocation)
+### 4. [Black-Litterman Portfolio Allocation](./Black-Litterman%20Portfolio%20Allocation)
 
 An implementation of the Black-Litterman model that combines market equilibrium returns with investor-specific views to generate optimal portfolio allocations.
 
