@@ -196,12 +196,6 @@ With $\alpha + \beta = 0.983$, AAPL volatility shocks have a half-life of approx
 - Markets don't quickly "forget" recent turbulence
 - Risk managers must account for long memory in volatility
 
-### 2. Fat Tails Matter
-Student's t-distribution with ν = 4.78 degrees of freedom captured the heavy tails in return distribution:
-- Extreme returns occur more frequently than a normal distribution predicts
-- COVID-19 crash (March 2020) demonstrated this: returns exceeded -10% on multiple days
-- Standard risk models (assuming normality) would have underestimated tail risk
-
 ### 3. Volatility Clustering is Real and Predictable
 The ARCH LM test (p < 0.0001) provided strong statistical evidence that volatility clusters. GARCH successfully modeled this:
 - 2020: COVID crash → sustained high volatility for months
