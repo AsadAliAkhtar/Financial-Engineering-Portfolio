@@ -1,1 +1,349 @@
+# Volatility Modeling and Forecasting of AAPL Using GARCH
 
+## Overview
+
+This project applies **GARCH (Generalized Autoregressive Conditional Heteroskedasticity)** modeling to forecast the time-varying volatility of **Apple Inc. (AAPL)** stock returns over a 10-year period (2015-2025). 
+
+Financial markets exhibit a phenomenon known as **volatility clustering** — periods of high volatility tend to follow periods of high volatility, and calm markets follow calm markets. Traditional statistical models assume constant volatility, which fails to capture this reality. GARCH models are specifically designed to handle this dynamic behavior, making them essential tools for risk management, option pricing, and portfolio optimization.
+
+### Why GARCH?
+
+Unlike simple historical volatility measures, GARCH models:
+- Capture volatility clustering and persistence
+- Provide dynamic, time-varying volatility estimates
+- Generate probabilistic forecasts of future volatility
+- Account for the fact that large price movements (positive or negative) increase future volatility
+
+This project demonstrates the complete workflow of volatility modeling, from exploratory data analysis and model diagnostics to out-of-sample forecasting and performance evaluation.
+
+## Dataset and Time Period
+
+### Asset
+- **Apple Inc. (AAPL)** - Leading technology company and one of the most liquid stocks in the market
+
+### Time Period
+- **Start Date**: January 1, 2015
+- **End Date**: December 30, 2025
+- **Duration**: ~11 years of daily trading data
+- **Total Observations**: 2,763 trading days
+
+### Train-Test Split
+- **Training Set**: 2,210 observations (80%) — January 2015 to October 2023
+- **Test Set**: 553 observations (20%) — October 2023 to December 2025
+
+### Key Market Events Captured
+- 2018: Trade war volatility
+- March 2020: COVID-19 market crash (volatility spike to 80%+ annualized)
+- 2020-2021: Recovery rally
+- 2022: Federal Reserve interest rate hikes
+- 2024-2025: AI-driven tech rally
+
+## Mathematical Framework
+
+### 1. Returns Calculation
+
+Daily percentage returns are computed as:
+
+$$r_t = \frac{P_t - P_{t-1}}{P_{t-1}} \times 100$$
+
+where:
+- $r_t$ = Return at time $t$ (in percentage)
+- $P_t$ = Closing price at time $t$
+- $P_{t-1}$ = Closing price at time $t-1$
+
+### 2. GARCH(1,1) Model Specification
+
+The GARCH(1,1) model consists of two equations:
+
+**Mean Equation:**
+
+$$r_t = \mu + \epsilon_t$$
+
+where:
+- $\mu$ = Constant mean return
+- $\epsilon_t$ = Error term with $\epsilon_t = \sigma_t z_t$ and $z_t \sim t(\nu)$ (Student's t-distribution)
+
+**Variance Equation:**
+
+$$\sigma_t^2 = \omega + \alpha \epsilon_{t-1}^2 + \beta \sigma_{t-1}^2$$
+
+where:
+- $\sigma_t^2$ = Conditional variance (volatility squared) at time $t$
+- $\omega$ = Baseline variance (long-run average)
+- $\alpha$ = ARCH parameter (reaction to shocks/news)
+- $\epsilon_{t-1}^2$ = Squared residual from previous period (measures impact of yesterday's surprise)
+- $\beta$ = GARCH parameter (volatility persistence)
+- $\sigma_{t-1}^2$ = Previous period's variance
+
+### 3. Model Parameters and Interpretation
+
+**Persistence:** $\alpha + \beta$
+- Measures how long volatility shocks persist
+- Values close to 1 indicate high persistence (shocks take time to dissipate)
+- Our model: $\alpha + \beta = 0.983$ → very high persistence
+
+**Half-Life of Volatility Shocks:**
+
+$$\text{Half-life} = \frac{\ln(0.5)}{\ln(\alpha + \beta)}$$
+
+For our model: approximately **40 trading days** (~2 months)
+
+### 4. Volatility Forecast
+
+One-step-ahead volatility forecast:
+
+$$\hat{\sigma}_{t+1}^2 = \omega + \alpha \epsilon_t^2 + \beta \sigma_t^2$$
+
+We forecast volatility (standard deviation) as:
+
+$$\hat{\sigma}_{t+1} = \sqrt{\hat{\sigma}_{t+1}^2}$$
+
+### 5. Evaluation Metrics
+
+**Mean Squared Error (MSE):**
+
+$$\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (\sigma_{\text{realized},i}^2 - \sigma_{\text{forecast},i}^2)^2$$
+
+**Root Mean Squared Error (RMSE):**
+
+$$\text{RMSE} = \sqrt{\text{MSE}}$$
+
+**Mean Absolute Error (MAE):**
+
+$$\text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |\sigma_{\text{realized},i} - \sigma_{\text{forecast},i}|$$
+
+where $\sigma_{\text{realized}} = |r_t|$ (absolute returns as proxy for realized volatility).
+
+## Methodology
+
+### 1. Exploratory Data Analysis
+- Downloaded AAPL historical data using `yfinance`
+- Calculated daily returns and examined distribution
+- Identified volatility clustering visually
+- Computed rolling 50-day volatility
+
+### 2. Pre-Modeling Diagnostics
+- **ACF/PACF Analysis**: Tested autocorrelation in squared returns
+- **ARCH LM Test**: Confirmed presence of ARCH effects (LM Statistic = 349.48, p < 0.0001)
+  - Result: Strong evidence of time-varying volatility, justifying GARCH model
+
+### 3. Model Selection and Estimation
+- **Model**: GARCH(1,1) with Student's t-distribution
+- **Why Student's t?** Return distribution showed fat tails (leptokurtosis)
+- **Estimation**: Maximum Likelihood on training data (2,210 observations)
+
+### 4. Model Validation
+- **Ljung-Box Tests**: Verified standardized residuals are white noise
+- **ACF of Squared Residuals**: Confirmed model removed all ARCH effects
+- Result: Model passed all diagnostic tests ✓
+
+### 5. Walk-Forward Validation
+- **Approach**: Expanding window methodology
+- **Process**: 
+  - Forecast Day 1: Train on 2,210 days → predict volatility for Day 2,211
+  - Forecast Day 2: Train on 2,211 days → predict volatility for Day 2,212
+  - Repeat 553 times (entire test set)
+- **Rationale**: Mimics real-world usage where model is refit as new data arrives
+
+### 6. Benchmark Comparison
+- Compared GARCH forecasts against 50-day rolling volatility (simple benchmark)
+- Evaluated using RMSE and MAE metrics
+
+## Model Results
+
+### Estimated Parameters
+
+| Parameter | Estimate | Std Error | t-statistic | p-value | Interpretation |
+|-----------|----------|-----------|-------------|---------|----------------|
+| **μ (mu)** | 0.1435 | 0.0284 | 5.061 | < 0.001 | Average daily return: +0.14% |
+| **ω (omega)** | 0.0850 | 0.0326 | 2.605 | 0.009 | Baseline variance |
+| **α (alpha)** | 0.1108 | 0.0227 | 4.889 | < 0.001 | Reaction to shocks: 11% |
+| **β (beta)** | 0.8717 | 0.0259 | 33.629 | < 0.001 | Persistence: 87% |
+| **ν (nu)** | 4.7762 | 0.481 | 9.924 | < 0.001 | Degrees of freedom (t-dist) |
+
+**Key Findings:**
+- **High Persistence**: $\alpha + \beta = 0.983$ means volatility shocks are long-lasting
+- **Shock Impact**: 11% of yesterday's surprise affects today's volatility
+- **Fat Tails Confirmed**: ν = 4.78 < 30 indicates heavier tails than normal distribution
+
+![GARCH Model Fit on Training Data](./images/garch_training_fit.png)
+
+### Diagnostic Test Results
+
+**Ljung-Box Test on Standardized Residuals:**
+- All p-values > 0.05 (except lag 9: p = 0.042, borderline)
+- **Conclusion**: Residuals are white noise ✓
+
+**Ljung-Box Test on Squared Standardized Residuals:**
+- All p-values > 0.60 (most > 0.90)
+- **Conclusion**: No remaining ARCH effects — model captured all volatility clustering ✓
+
+![Residual Diagnostics](./images/residual_diagnostics.png)
+
+## Out-of-Sample Forecasting Performance
+
+### Visual Performance
+
+![Volatility Forecasts vs Realized Volatility](./images/forecast_performance.png)
+
+### Quantitative Results
+
+| Metric | GARCH(1,1) | Rolling Volatility (50-day) | Improvement |
+|--------|------------|----------------------------|-------------|
+| **RMSE** | 1.340 | 1.427 | **6.1% better** |
+| **MAE** | 1.010 | 1.030 | **2.0% better** |
+
+### Interpretation
+
+1. **GARCH Outperforms Benchmark**: The GARCH model demonstrates superior forecasting accuracy compared to the naive 50-day rolling volatility approach.
+
+2. **Modest but Meaningful Improvement**: While 6% may seem small, in risk management, even marginal improvements in volatility forecasts translate to better position sizing, more accurate option pricing, and improved risk-adjusted returns.
+
+3. **Adaptive Forecasting**: GARCH forecasts dynamically adjust to market conditions, expanding during turbulent periods and contracting during calm periods.
+
+4. **Practical Value**: The model successfully anticipated volatility regimes, as evidenced by visual inspection of forecast bands tracking realized volatility.
+
+## Key Insights
+
+### 1. Volatility is Highly Persistent
+With $\alpha + \beta = 0.983$, AAPL volatility shocks have a half-life of approximately **40 trading days** (2 months). This means:
+- A volatility spike today will still influence forecasts 2 months later
+- Markets don't quickly "forget" recent turbulence
+- Risk managers must account for long memory in volatility
+
+### 2. Fat Tails Matter
+Student's t-distribution with ν = 4.78 degrees of freedom captured the heavy tails in return distribution:
+- Extreme returns occur more frequently than a normal distribution predicts
+- COVID-19 crash (March 2020) demonstrated this: returns exceeded -10% on multiple days
+- Standard risk models (assuming normality) would have underestimated tail risk
+
+### 3. Volatility Clustering is Real and Predictable
+The ARCH LM test (p < 0.0001) provided strong statistical evidence that volatility clusters. GARCH successfully modeled this:
+- 2020: COVID crash → sustained high volatility for months
+- 2021-2023: Relatively calm period → low volatility persisted
+- Model captured both regimes accurately
+
+### 4. Simple Benchmarks Are Hard to Beat (But We Did)
+The 6% RMSE improvement over rolling volatility might seem modest, but:
+- Rolling volatility is a strong benchmark (practitioners use it)
+- Beating it consistently out-of-sample validates the model
+- Small edges compound over time in trading and risk management
+
+### 5. Walk-Forward Validation is Essential
+By refitting the model 553 times (once per test day), we ensured:
+- No look-ahead bias (never used future data)
+- Realistic evaluation of model performance
+- Simulation of real-world deployment scenario
+
+## Limitations
+
+1. **Historical Analysis**: Past performance does not guarantee future results. Model parameters estimated on 2015-2023 data may not hold in future market regimes.
+
+2. **Symmetric Response**: GARCH(1,1) treats positive and negative shocks equally. In reality, negative returns often increase volatility more than positive returns (leverage effect). EGARCH or GJR-GARCH models address this.
+
+3. **Single-Asset Focus**: Analysis limited to AAPL. Multivariate models (like DCC-GARCH) would be needed for portfolio-level volatility forecasting.
+
+4. **Realized Volatility Proxy**: We used absolute returns as a proxy for realized volatility. More sophisticated measures (e.g., realized variance from intraday data) could improve evaluation.
+
+5. **Model Risk**: GARCH(1,1) is a simplification. Real volatility dynamics may be more complex, potentially requiring higher-order models or alternative specifications.
+
+## Tools and Libraries
+
+- **Python 3.x** - Core programming language
+- **pandas** - Time series data manipulation
+- **numpy** - Numerical computations
+- **yfinance** - Financial data retrieval from Yahoo Finance
+- **arch** - GARCH model estimation and forecasting
+- **statsmodels** - Statistical tests (ACF, PACF, Ljung-Box, ARCH LM)
+- **matplotlib** - Data visualization
+- **seaborn** - Statistical plotting
+- **sklearn** - Forecast evaluation metrics (MSE, MAE, RMSE)
+
+## Repository Structure
+```
+AAPL-GARCH-Volatility-Forecasting/
+│
+├── volatility_modeling_garch.ipynb    # Main Jupyter notebook with analysis
+├── README.md                          # This file
+├── requirements.txt                   # Python dependencies
+│
+└── images/                            # Visualization outputs
+    ├── garch_training_fit.png
+    ├── residual_diagnostics.png
+    └── forecast_performance.png
+```
+
+## How to Run
+
+### Prerequisites
+```bash
+pip install pandas numpy yfinance arch statsmodels matplotlib seaborn scikit-learn
+```
+
+Or install all dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+### Execution
+1. Clone this repository:
+```bash
+   git clone https://github.com/yourusername/AAPL-GARCH-Volatility-Forecasting.git
+   cd AAPL-GARCH-Volatility-Forecasting
+```
+
+2. Open Jupyter Notebook:
+```bash
+   jupyter notebook volatility_modeling_garch.ipynb
+```
+
+3. Run all cells sequentially (Kernel → Restart & Run All)
+
+## Future Enhancements
+
+Potential extensions to deepen the analysis:
+
+1. **Asymmetric Models**: Implement EGARCH or GJR-GARCH to capture leverage effect (negative returns → higher volatility than positive returns)
+
+2. **Multivariate GARCH**: Extend to portfolio context using DCC-GARCH to model dynamic correlations between multiple assets
+
+3. **Alternative Distributions**: Test other distributional assumptions (e.g., skewed Student's t, generalized error distribution)
+
+4. **Intraday Data**: Use high-frequency data to compute realized volatility measures for better forecast evaluation
+
+5. **Option Pricing Application**: Use GARCH volatility forecasts to price options and compare to Black-Scholes
+
+6. **Risk Metrics**: Calculate dynamic Value-at-Risk (VaR) and Conditional VaR (CVaR) using GARCH forecasts
+
+7. **Regime-Switching Models**: Implement Markov-switching GARCH to explicitly model volatility regime changes
+
+8. **Machine Learning Comparison**: Benchmark against LSTM or other deep learning approaches to volatility forecasting
+
+## References
+
+### Academic Papers
+- Engle, R. F. (1982). "Autoregressive Conditional Heteroscedasticity with Estimates of the Variance of United Kingdom Inflation." *Econometrica*, 50(4), 987-1007.
+- Bollerslev, T. (1986). "Generalized Autoregressive Conditional Heteroskedasticity." *Journal of Econometrics*, 31(3), 307-327.
+- Hansen, P. R., & Lunde, A. (2005). "A Forecast Comparison of Volatility Models: Does Anything Beat a GARCH(1,1)?" *Journal of Applied Econometrics*, 20(7), 873-889.
+
+### Textbooks
+- Tsay, R. S. (2010). *Analysis of Financial Time Series* (3rd ed.). Wiley.
+- Brooks, C. (2014). *Introductory Econometrics for Finance* (3rd ed.). Cambridge University Press.
+
+## Author
+
+**Asad Ali Akhtar**
+
+- LinkedIn: [Your LinkedIn Profile]
+- GitHub: [@yourusername](https://github.com/yourusername)
+- Email: your.email@example.com
+
+---
+
+**License**: MIT License - feel free to use this code for educational or research purposes.
+
+**Disclaimer**: This project is for educational purposes only. The volatility forecasts should not be used as the sole basis for investment decisions. Past performance does not guarantee future results.
+
+---
+
+*Last Updated: February 2026*
