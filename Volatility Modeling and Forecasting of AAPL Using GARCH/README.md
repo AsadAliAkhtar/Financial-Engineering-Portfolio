@@ -110,6 +110,7 @@ where $\sigma_{\text{realized}} = |r_t|$ (absolute returns as proxy for realized
 
 ### 2. Pre-Modeling Diagnostics
 - **ACF/PACF Analysis**: Tested autocorrelation in squared returns
+![Partial Autocorrelation Plot to test autocorrelation](./Partial_Autocorrelation_Plot_of_Squared_Returns.jpg)
 - **ARCH LM Test**: Confirmed presence of ARCH effects (LM Statistic = 349.48, p < 0.0001)
   - Result: Strong evidence of time-varying volatility, justifying GARCH model
 
@@ -152,7 +153,7 @@ where $\sigma_{\text{realized}} = |r_t|$ (absolute returns as proxy for realized
 - **Shock Impact**: 11% of yesterday's surprise affects today's volatility
 - **Fat Tails Confirmed**: ν = 4.78 < 30 indicates heavier tails than normal distribution
 
-![GARCH Model Fit on Training Data](./images/garch_training_fit.png)
+![GARCH Model Fit on Training Data](./Train_Con_vol_plot.jpg)
 
 ### Diagnostic Test Results
 
@@ -164,13 +165,13 @@ where $\sigma_{\text{realized}} = |r_t|$ (absolute returns as proxy for realized
 - All p-values > 0.60 (most > 0.90)
 - **Conclusion**: No remaining ARCH effects — model captured all volatility clustering ✓
 
-![Residual Diagnostics](./images/residual_diagnostics.png)
+![Residual Diagnostics](./Residual_plot.jpg)
 
 ## Out-of-Sample Forecasting Performance
 
 ### Visual Performance
 
-![Volatility Forecasts vs Realized Volatility](./images/forecast_performance.png)
+![Volatility Forecasts vs Realized Volatility](./Test_Con_vol_plot.jpg)
 
 ### Quantitative Results
 
