@@ -142,16 +142,14 @@ where $\sigma_{\text{realized}} = |r_t|$ (absolute returns as proxy for realized
 
 | Parameter | Estimate | Std Error | t-statistic | p-value | Interpretation |
 |-----------|----------|-----------|-------------|---------|----------------|
-| **μ (mu)** | 0.1435 | 0.0284 | 5.061 | < 0.001 | Average daily return: +0.14% |
-| **ω (omega)** | 0.0850 | 0.0326 | 2.605 | 0.009 | Baseline variance |
-| **α (alpha)** | 0.1108 | 0.0227 | 4.889 | < 0.001 | Reaction to shocks: 11% |
-| **β (beta)** | 0.8717 | 0.0259 | 33.629 | < 0.001 | Persistence: 87% |
-| **ν (nu)** | 4.7762 | 0.481 | 9.924 | < 0.001 | Degrees of freedom (t-dist) |
+| **μ (mu)** | 0.1820 | 0.0350 | 5.198 | < 0.001 | Average daily return: +0.18% |
+| **ω (omega)** | 0.1506 | 0.0458 | 3.287 | 0.001 | Baseline variance |
+| **α (alpha)** | 0.1153 | 0.0225 | 5.132 | < 0.001 | Reaction to shocks: 11% |
+| **β (beta)** | 0.8398 | 0.0278 | 30.149 | < 0.001 | Persistence: 83% |
 
 **Key Findings:**
 - **High Persistence**: $\alpha + \beta = 0.983$ means volatility shocks are long-lasting
 - **Shock Impact**: 11% of yesterday's surprise affects today's volatility
-- **Fat Tails Confirmed**: ν = 4.78 < 30 indicates heavier tails than normal distribution
 
 ![GARCH Model Fit on Training Data](./Train_Con_vol_plot.jpg)
 
