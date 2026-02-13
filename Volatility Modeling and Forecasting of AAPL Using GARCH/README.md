@@ -169,7 +169,7 @@ where $\sigma_{\text{realized}} = |r_t|$ (absolute returns as proxy for realized
 
 ### Visual Performance
 
-![Volatility Forecasts vs Realized Volatility](./Test_Con_vol_plot.jpg)
+![Volatility Forecasts vs Realized Volatility](./Test_l_plot.jpg)
 
 ### Quantitative Results
 
