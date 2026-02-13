@@ -125,7 +125,6 @@ I'm continuously expanding this portfolio with new projects. Planned additions i
 
 - **Options Pricing Models** - Black-Scholes, Monte Carlo methods
 - **Risk Management** - VaR, CVaR, stress testing
-- **Time Series Analysis** - ARIMA, GARCH models for volatility
 - **Factor Models** - Fama-French, momentum strategies
 - **Machine Learning in Finance** - Predictive models for returns
 
