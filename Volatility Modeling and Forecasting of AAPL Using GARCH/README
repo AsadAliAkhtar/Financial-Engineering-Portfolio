@@ -190,7 +190,7 @@ where $\sigma_{\text{realized}} = |r_t|$ (absolute returns as proxy for realized
 
 | Metric | GARCH(1,1) | Rolling Volatility (50-day) | Improvement |
 |--------|------------|----------------------------|-------------|
-| **RMSE** | 1.340 | 1.427 | **6.1% better** |
+| **RMSE** | 1.340 | 1.427 | **6.0% better** |
 | **MAE** | 1.010 | 1.030 | **2.0% better** |
 
 ### Interpretation
@@ -259,45 +259,6 @@ By refitting the model 553 times (once per test day), we ensured:
 - **seaborn** - Statistical plotting
 - **sklearn** - Forecast evaluation metrics (MSE, MAE, RMSE)
 
-## Repository Structure
-```
-AAPL-GARCH-Volatility-Forecasting/
-│
-├── volatility_modeling_garch.ipynb    # Main Jupyter notebook with analysis
-├── README.md                          # This file
-├── requirements.txt                   # Python dependencies
-│
-└── images/                            # Visualization outputs
-    ├── garch_training_fit.png
-    ├── residual_diagnostics.png
-    └── forecast_performance.png
-```
-
-## How to Run
-
-### Prerequisites
-```bash
-pip install pandas numpy yfinance arch statsmodels matplotlib seaborn scikit-learn
-```
-
-Or install all dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-### Execution
-1. Clone this repository:
-```bash
-   git clone https://github.com/yourusername/AAPL-GARCH-Volatility-Forecasting.git
-   cd AAPL-GARCH-Volatility-Forecasting
-```
-
-2. Open Jupyter Notebook:
-```bash
-   jupyter notebook volatility_modeling_garch.ipynb
-```
-
-3. Run all cells sequentially (Kernel → Restart & Run All)
 
 ## Future Enhancements
 
@@ -319,28 +280,12 @@ Potential extensions to deepen the analysis:
 
 8. **Machine Learning Comparison**: Benchmark against LSTM or other deep learning approaches to volatility forecasting
 
-## References
-
-### Academic Papers
-- Engle, R. F. (1982). "Autoregressive Conditional Heteroscedasticity with Estimates of the Variance of United Kingdom Inflation." *Econometrica*, 50(4), 987-1007.
-- Bollerslev, T. (1986). "Generalized Autoregressive Conditional Heteroskedasticity." *Journal of Econometrics*, 31(3), 307-327.
-- Hansen, P. R., & Lunde, A. (2005). "A Forecast Comparison of Volatility Models: Does Anything Beat a GARCH(1,1)?" *Journal of Applied Econometrics*, 20(7), 873-889.
-
-### Textbooks
-- Tsay, R. S. (2010). *Analysis of Financial Time Series* (3rd ed.). Wiley.
-- Brooks, C. (2014). *Introductory Econometrics for Finance* (3rd ed.). Cambridge University Press.
 
 ## Author
 
 **Asad Ali Akhtar**
 
-- LinkedIn: [Your LinkedIn Profile]
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
-
 ---
-
-**License**: MIT License - feel free to use this code for educational or research purposes.
 
 **Disclaimer**: This project is for educational purposes only. The volatility forecasts should not be used as the sole basis for investment decisions. Past performance does not guarantee future results.
 
