@@ -39,7 +39,6 @@ Each project includes:
 ## 📚 Projects
 
 ### 1. [Single Asset Risk and Return Analysis](./Single%20Asset%20Risk%20and%20Return%20Analysis)
-
 A comprehensive analysis of risk and return characteristics for the S&P 500 Index, examining historical performance across different market regimes, including pre-COVID stability, pandemic volatility, and post-pandemic recovery.
 
 **Key Features:**
@@ -51,7 +50,19 @@ A comprehensive analysis of risk and return characteristics for the S&P 500 Inde
 
 ---
 
-### 2. [Volatility Modeling and Forecasting of AAPL Using GARCH](./Volatility%20Modeling%20and%20Forecasting%20of%20AAPL%20Using%20GARCH)
+### 2. [Systematic Risk Analysis Using Fama-French Three-Factor Model](./Systematic%20Risk%20Analysis%20Using%20Fama-French%20Three-Factor%20Model)
+Decomposition of stock returns into systematic risk components using the Fama-French 3-factor model across 7 stocks from technology, financial, and consumer/energy sectors over an 11-year period (2015-2025), with both static and time-varying analysis.
+
+**Key Features:**
+- Static OLS regression to estimate market beta, size (SMB), and value (HML) factor exposures with statistical significance testing
+- Rolling window analysis using 36-month windows (96 observations per stock) to capture time-varying risk dynamics
+- Identification of extreme beta instability in NVDA (β ranging from 1.2 to 2.6) versus stable profiles in JPM (β ≈ 1.0 throughout)
+- Clear value/growth segmentation: energy and financials exhibit value characteristics (positive HML) while tech stocks show growth orientation (negative HML)
+- COVID-19 impact analysis revealing temporary beta disruption across all stocks with divergent post-pandemic recovery paths.
+
+---
+
+### 3. [Volatility Modeling and Forecasting of AAPL Using GARCH](./Volatility%20Modeling%20and%20Forecasting%20of%20AAPL%20Using%20GARCH)
 Application of GARCH (Generalized Autoregressive Conditional Heteroskedasticity) modeling to forecast time-varying volatility in Apple stock returns over a 11-year period (2015-2025), capturing volatility clustering.
 
 **Key Features:**
@@ -63,8 +74,7 @@ Application of GARCH (Generalized Autoregressive Conditional Heteroskedasticity)
 
 ---
 
-### 3. [Option Pricing and Sensitivity Analysis under Discrete and Continuous-Time Models](./Option%20Pricing%20and%20Sensitivity%20Analysis%20under%20Discrete%20and%20Continuous-Time%20Models)
-
+### 4. [Option Pricing and Sensitivity Analysis under Discrete and Continuous-Time Models](./Option%20Pricing%20and%20Sensitivity%20Analysis%20under%20Discrete%20and%20Continuous-Time%20Models)
 Development of a comprehensive computational framework for pricing derivative securities using both discrete-time and continuous-time models, including convergence analysis and risk sensitivity evaluation.
 
 **Key Features:**
@@ -76,8 +86,7 @@ Development of a comprehensive computational framework for pricing derivative se
 
 ---
 
-### 4. [Mean-Variance Portfolio Optimization](./Mean-Variance%20Optimization)
-
+### 5. [Mean-Variance Portfolio Optimization](./Mean-Variance%20Optimization)
 Implementation of the Markowitz mean-variance optimization framework using both constrained and unconstrained approaches.
 
 **Key Features:**
@@ -88,8 +97,7 @@ Implementation of the Markowitz mean-variance optimization framework using both 
 
 ---
 
-### 5. [Black-Litterman Portfolio Allocation](./Black-Litterman%20Portfolio%20Allocation)
-
+### 6. [Black-Litterman Portfolio Allocation](./Black-Litterman%20Portfolio%20Allocation)
 An implementation of the Black-Litterman model that combines market equilibrium returns with investor-specific views to generate optimal portfolio allocations.
 
 **Key Features:**
