@@ -63,7 +63,7 @@ Application of GARCH (Generalized Autoregressive Conditional Heteroskedasticity)
 
 ---
 
-### 3. [Option Pricing and Sensitivity Analysis Using Discrete and Continuous Models](./Option%20Pricing%20and%20Sensitivity%20Analysis%20Using%20Discrete%20and%20Continuous-Time%20Models)
+### 3. [Option Pricing and Sensitivity Analysis under Discrete and Continuous-Time Models](./Option%20Pricing%20and%20Sensitivity%20Analysis%20under%20Discrete%20and%20Continuous-Time%20Models)
 
 Development of a comprehensive computational framework for pricing derivative securities using both discrete-time and continuous-time models, including convergence analysis and risk sensitivity evaluation.
 
