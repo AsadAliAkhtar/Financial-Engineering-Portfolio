@@ -136,7 +136,7 @@ Relevant coursework in Financial Markets, Financial Data, Financial Econometrics
 
 I'm continuously expanding this portfolio with new projects. Planned additions include:
 
-- **Options Pricing Models** - Black-Scholes, Monte Carlo methods
+- **Options Pricing Models** - Heston and Merton Models and their Calibration
 - **Risk Management** - VaR, CVaR, stress testing
 - **Factor Models** - Fama-French, momentum strategies
 - **Machine Learning in Finance** - Predictive models for returns
