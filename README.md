@@ -58,7 +58,6 @@ Decomposition of stock returns into systematic risk components using the Fama-Fr
 - Rolling window analysis using 36-month windows (96 observations per stock) to capture time-varying risk dynamics
 - Identification of extreme beta instability in NVDA (β ranging from 1.2 to 2.6) versus stable profiles in JPM (β ≈ 1.0 throughout)
 - Clear value/growth segmentation: energy and financials exhibit value characteristics (positive HML) while tech stocks show growth orientation (negative HML)
-- COVID-19 impact analysis revealing temporary beta disruption across all stocks with divergent post-pandemic recovery paths.
 
 ---
 
