@@ -1,4 +1,4 @@
-# Option Pricing and Sensitivity Analysis Using Discrete and Continuous Models
+# Option Pricing and Sensitivity Analysis uder Discrete and Continuous-Time Models
 
 ## Overview
 
@@ -117,9 +117,9 @@ Black–Scholes serves as the benchmark for convergence comparison.
 
 # Convergence Analysis
 
-The following plot shows convergence of the Binomial model toward the Black–Scholes price as the number of steps increases.
+The following plot shows convergence of the Trinomial model toward the Black–Scholes price as the number of steps increases.
 
-![Binomial Convergence](./images/convergence_plot.png)
+![Trinomial Convergence](./Convergence_plot.jpg)
 
 As $N$ increases, the discrete-time model stabilizes and approaches the continuous-time solution.
 
@@ -129,10 +129,9 @@ As $N$ increases, the discrete-time model stabilizes and approaches the continuo
 
 | Model               | Call Price | Put Price |
 |---------------------|------------|-----------|
-| Binomial (N=50)     | 39.82      | 4.12      |
-| Binomial (N=200)    | 39.85      | 4.10      |
-| Trinomial (N=200)   | 39.86      | 4.11      |
-| Black–Scholes       | 39.85      | 4.10      |
+| Binomial (N=100)    | 39.92      | 29.92     |
+| Trinomial (N=100)   | 39.86      | 29.86     |
+| Black–Scholes       | 39.85      | 29.85     |
 
 The results demonstrate convergence of tree-based models toward the Black–Scholes benchmark.
 
@@ -140,22 +139,21 @@ The results demonstrate convergence of tree-based models toward the Black–Scho
 
 # American vs European Comparison
 
-| Option Type | European Price | American Price | Early Exercise Premium |
-|-------------|---------------|----------------|------------------------|
-| Call        | 39.85         | 39.85          | 0.00                   |
-| Put         | 4.10          | 4.32           | 0.22                   |
+| Option Type | European Price | American Price |
+|-------------|---------------|----------------|
+| Call        | 39.85         | 39.90          |
+| Put         | 29.85         | 29.90          |
 
-The American put exhibits a positive early exercise premium, while the American call does not (under no-dividend assumption).
 
 ---
 
 # Asian Option – Monte Carlo Results
 
-| Simulations (M) | Estimated Price | Standard Error |
-|-----------------|-----------------|----------------|
-| 10,000          | 5.12            | 0.18           |
-| 50,000          | 5.08            | 0.08           |
-| 100,000         | 5.06            | 0.05           |
+| Simulations (M) | Call Price | Put Price | Standard Error |
+|-----------------|------------|-----------|----------------|
+| 100             | 27.07      | 17.45     | 0.1            |
+| 1000            | 22.11      | 14.54     | 0.03           |
+| 10,000          | 24.91      | 15.18     | 0.01           |
 
 As the number of simulations increases, the estimator stabilizes and the standard error decreases at rate:
 
@@ -169,11 +167,11 @@ $$
 
 | Greek  | Call Value | Put Value | Interpretation |
 |--------|------------|-----------|----------------|
-| Delta  | 0.82       | -0.18     | Sensitivity to stock price |
-| Gamma  | 0.012      | 0.012     | Curvature |
-| Vega   | 28.45      | 28.45     | Sensitivity to volatility |
-| Theta  | -4.32      | -2.10     | Time decay |
-| Rho    | 35.12      | -12.44    | Sensitivity to interest rate |
+| Delta  | 0.72       | -0.27     | Sensitivity to stock price |
+| Gamma  | 0.003      | 0.003     | Curvature |
+| Vega   | 106.29     | 106.29    | Sensitivity to volatility |
+| Theta  | -1.59      | -1.59     | Time decay |
+| Rho    | 322.37     | -577.62   | Sensitivity to interest rate |
 
 Greeks quantify exposure to key risk factors and are essential for hedging strategies.
 
@@ -220,14 +218,14 @@ Greeks quantify exposure to key risk factors and are essential for hedging strat
 
 ---
 
-# Conclusion
+## Author
 
-This project integrates discrete and continuous option pricing methodologies into a unified computational framework. It demonstrates:
+**Asad Ali Akhtar**
 
-- Theoretical understanding of risk-neutral valuation  
-- Numerical implementation of pricing models  
-- Convergence validation  
-- Risk sensitivity (Greeks) computation  
-- Path-dependent option pricing  
+---
 
-The project bridges mathematical finance theory with practical derivatives modeling and quantitative risk management.
+**Disclaimer**: This project is for educational purposes only. The volatility forecasts should not be used as the sole basis for investment decisions. Past performance does not guarantee future results.
+
+---
+
+*Last Updated: February 2026*
