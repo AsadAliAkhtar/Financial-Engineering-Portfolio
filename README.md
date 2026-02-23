@@ -63,7 +63,20 @@ Application of GARCH (Generalized Autoregressive Conditional Heteroskedasticity)
 
 ---
 
-### 3. [Mean-Variance Portfolio Optimization](./Mean-Variance%20Optimization)
+### 3. [Option Pricing and Sensitivity Analysis Using Discrete and Continuous Models](./Option%20Pricing%20and%20Sensitivity%20Analysis%20Using%20Discrete%20and%20Continuous-Time%20Models)
+
+Development of a comprehensive computational framework for pricing derivative securities using both discrete-time and continuous-time models, including convergence analysis and risk sensitivity evaluation.
+
+**Key Features:**
+- Implementation of Binomial and Trinomial tree models for European option pricing with convergence validation toward Black–Scholes benchmark
+- Pricing of American options with early exercise logic and quantification of early exercise premium
+- Monte Carlo simulation for arithmetic Asian options with convergence analysis across increasing simulation paths
+- Analytical implementation of Black–Scholes model with full computation of Greeks (Delta, Gamma, Vega, Theta, Rho)
+- Comparative analysis between discrete and continuous-time frameworks highlighting numerical stability and model behavior
+
+---
+
+### 4. [Mean-Variance Portfolio Optimization](./Mean-Variance%20Optimization)
 
 Implementation of the Markowitz mean-variance optimization framework using both constrained and unconstrained approaches.
 
@@ -75,7 +88,7 @@ Implementation of the Markowitz mean-variance optimization framework using both 
 
 ---
 
-### 4. [Black-Litterman Portfolio Allocation](./Black-Litterman%20Portfolio%20Allocation)
+### 5. [Black-Litterman Portfolio Allocation](./Black-Litterman%20Portfolio%20Allocation)
 
 An implementation of the Black-Litterman model that combines market equilibrium returns with investor-specific views to generate optimal portfolio allocations.
 
