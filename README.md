@@ -50,7 +50,7 @@ A comprehensive analysis of risk and return characteristics for the S&P 500 Inde
 
 ---
 
-### 2. [Systematic Risk Analysis Using Fama-French Three-Factor Model](./Systematic%20Risk%20Analysis%20Using%20Fama-French%20Three-Factor%20Model)
+### 2. [Systematic Risk Analysis Using Fama-French Three-Factor Model](./Systematic%20Risk%20Analysis%20using%20Fama-French%20Three-Factor%20Model)
 Decomposition of stock returns into systematic risk components using the Fama-French 3-factor model across 7 stocks from technology, financial, and consumer/energy sectors over an 11-year period (2015-2025), with both static and time-varying analysis.
 
 **Key Features:**
