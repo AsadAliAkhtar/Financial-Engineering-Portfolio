@@ -187,7 +187,7 @@ $$\hat{\beta}_{i,t} = f(\text{returns}_{t-35:t})$$
 
 ### Rolling Window Insights
 
-![Systematic Risk Comparison](./Systematic_Risk_Comparison.png)
+![Systematic Risk Comparison](./Systematic_Risk_Comparison_plot.jpg)
 
 **Beta Instability:**
 
@@ -208,9 +208,9 @@ $$\hat{\beta}_{i,t} = f(\text{returns}_{t-35:t})$$
 
 4. **AAPL**: Increased from β = 1.0 to β = 1.4 (2020-2024), then sharp drop to β = 0.7 (2025-2026). **Major recent regime shift** from market-average to defensive.
 
-![Time-Varying Market Beta](./Rolling_Beta.png)
+![Time-Varying Market Beta](./Time_varying_Market_beta_plot.jpg)
 
-![Time-Varying Value/Growth Characteristics](./Rolling_HML.png)
+![Time-Varying Value/Growth Characteristics](./Value_Growth_Charac_plot.jpg)
 
 **Style Drift Observations:**
 - **Tech stocks**: Became MORE growth-oriented over time (HML more negative)
