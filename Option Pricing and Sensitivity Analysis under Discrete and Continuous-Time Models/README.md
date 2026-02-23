@@ -224,8 +224,4 @@ Greeks quantify exposure to key risk factors and are essential for hedging strat
 
 ---
 
-**Disclaimer**: This project is for educational purposes only. The volatility forecasts should not be used as the sole basis for investment decisions. Past performance does not guarantee future results.
-
----
-
 *Last Updated: February 2026*
