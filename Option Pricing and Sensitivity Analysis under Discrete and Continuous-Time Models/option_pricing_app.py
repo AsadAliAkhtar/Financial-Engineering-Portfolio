@@ -31,7 +31,7 @@ def binomial_tree(S, K, T, r, sigma, N, opt_type, exercise="European"):
     # Backward induction
     for j in range(N - 1, -1, -1):
         C = np.exp(-r * dt) * (p * C[:-1] + (1 - p) * C[1:]) 
-        if exercise == "American": [cite: 211]
+        if exercise == "American":
             S_curr = S * (u ** np.arange(j, -1, -1)) * (d ** np.arange(0, j + 1, 1))
             if opt_type == "Call":
                 C = np.maximum(C, S_curr - K)
