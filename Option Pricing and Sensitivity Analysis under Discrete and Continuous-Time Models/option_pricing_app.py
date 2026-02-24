@@ -123,7 +123,7 @@ with st.sidebar:
     
     # UPDATED: Max limit increased to 2000
     if method != "Black-Scholes":
-        N = st.slider("Time Steps (N)", 10, 2000, 100)
+        N = st.slider("Time Steps (N)", 10, 5000, 100)
     else:
         N = 100 # Default if BS selected
         
@@ -185,6 +185,6 @@ if st.sidebar.button("Run Model"):
             ax2.set_ylabel("Option Price")
             ax2.grid(True, alpha=0.3)
             st.pyplot(fig2)
-            st.caption("As N increases, the model converges to the continuous-time value[cite: 423, 620].")
+            st.caption("As N increases, the model converges to the continuous-time value.")
         else:
             st.info("Convergence analysis is used for discrete tree models.")
