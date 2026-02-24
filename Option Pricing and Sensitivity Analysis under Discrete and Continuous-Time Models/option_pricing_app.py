@@ -6,46 +6,67 @@ from scipy.stats import norm
 # --- 1. CORE PRICING FUNCTIONS (Directly from Project PDF) ---
 
 def black_scholes(S, K, T, r, sigma, opt_type):
-    # Formulas for d1 and d2 [cite: 808]
+    # Formulas for d1 and d2
     d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
     d2 = d1 - sigma * np.sqrt(T)
     if opt_type == "Call":
-        return S * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(d2) # [cite: 806]
+        return S * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(d2) #
     else:
-        return K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1) # [cite: 807]
+        return K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1) #
+
+def black_scholes_greek(S, K, T, t, r, sigma, opt_type):
+    """Computes Greeks for Risk Sensitivity Analysis."""
+    time_to_maturity = T - t
+    if time_to_maturity <= 0: return 0.0, 0.0, 0.0, 0.0, 0.0
+    d1 = (np.log(S / K) + (r + sigma**2 / 2) * time_to_maturity) / (sigma * np.sqrt(time_to_maturity))
+    d2 = d1 - sigma * np.sqrt(time_to_maturity)
+    
+    # Shared Gamma and Vega
+    Gamma = norm.pdf(d1) / (S * sigma * np.sqrt(time_to_maturity)) #
+    Vega = S * norm.pdf(d1) * np.sqrt(time_to_maturity) #
+    
+    if opt_type == "C":
+        Delta = norm.cdf(d1) #
+        Theta = -((S * norm.pdf(d1) * sigma) / (2 * np.sqrt(time_to_maturity))) - (r * K * np.exp(-r * time_to_maturity) * norm.cdf(d2)) #
+        Rho = K * time_to_maturity * np.exp(-r * time_to_maturity) * norm.cdf(d2) # 
+    else:
+        Delta = norm.cdf(d1) - 1 #
+        Theta = -((S * norm.pdf(d1) * sigma) / (2 * np.sqrt(time_to_maturity))) + (r * K * np.exp(-r * time_to_maturity) * norm.cdf(-d2)) #
+        Rho = -(K * time_to_maturity * np.exp(-r * time_to_maturity) * norm.cdf(-d2)) # 
+    return Delta, Gamma, Vega, Theta, Rho
 
 def binomial_tree(S, K, T, r, sigma, N, opt_type, exercise="European"):
-    dt = T / N # [cite: 432]
-    u = np.exp(sigma * np.sqrt(dt)) # [cite: 429]
-    d = np.exp(-sigma * np.sqrt(dt)) # [cite: 430]
-    p = (np.exp(r * dt) - d) / (u - d) # [cite: 434]
+    dt = T / N #
+    u = np.exp(sigma * np.sqrt(dt)) #
+    d = np.exp(-sigma * np.sqrt(dt)) #
+    p = (np.exp(r * dt) - d) / (u - d) #
     
     # Initialize terminal stock prices
     S_tree = S * (u ** np.arange(N, -1, -1)) * (d ** np.arange(0, N + 1, 1))
     
-    # Option value at maturity [cite: 436, 439]
+    # Option value at maturity
     if opt_type == "Call":
         C = np.maximum(S_tree - K, 0)
     else:
         C = np.maximum(K - S_tree, 0)
         
-    # Backward induction [cite: 441]
+    # Backward induction
     for j in range(N - 1, -1, -1):
         C = np.exp(-r * dt) * (p * C[:-1] + (1 - p) * C[1:])
         if exercise == "American":
             S_curr = S * (u ** np.arange(j, -1, -1)) * (d ** np.arange(0, j + 1, 1))
             if opt_type == "Call":
-                C = np.maximum(C, S_curr - K) # [cite: 630, 662]
+                C = np.maximum(C, S_curr - K) #
             else:
-                C = np.maximum(C, K - S_curr) # [cite: 630, 663]
+                C = np.maximum(C, K - S_curr) #
     return C[0]
 
 def trinomial_tree(S, K, T, r, sigma, N, opt_type, exercise="European"):
-    dt = T / N # [cite: 510]
-    u = np.exp(sigma * np.sqrt(2 * dt)) # [cite: 498]
-    d = 1 / u # [cite: 498]
+    dt = T / N #
+    u = np.exp(sigma * np.sqrt(2 * dt)) #
+    d = 1 / u #
     
-    # Probabilities [cite: 500, 502, 504]
+    # Probabilities
     edr = np.exp(r * dt / 2)
     esig = np.exp(sigma * np.sqrt(dt / 2))
     pu = ((edr - 1/esig) / (esig - 1/esig))**2
@@ -60,14 +81,14 @@ def trinomial_tree(S, K, T, r, sigma, N, opt_type, exercise="European"):
         C = np.maximum(K - S_tree, 0)
         
     for j in range(N - 1, -1, -1):
-        # [cite: 506]
+        #
         C = np.exp(-r * dt) * (pu * C[:-2] + pm * C[1:-1] + pd * C[2:])
         if exercise == "American":
             S_curr = S * (u ** np.arange(j, -j - 1, -1))
             if opt_type == "Call":
-                C = np.maximum(C, S_curr - K) # [cite: 741]
+                C = np.maximum(C, S_curr - K) #
             else:
-                C = np.maximum(C, K - S_curr) # [cite: 741]
+                C = np.maximum(C, K - S_curr) #
     return C[0]
 
 def asian_mc(S, K, T, r, sigma, N, M, opt_type):
@@ -84,13 +105,13 @@ def asian_mc(S, K, T, r, sigma, N, M, opt_type):
                 path.append(path[-1] * u)
             else:
                 path.append(path[-1] * d)
-        avg_price = np.mean(path) # [cite: 765, 794]
+        avg_price = np.mean(path) #
         if opt_type == "Call":
-            payoffs.append(max(avg_price - K, 0)) # [cite: 769]
+            payoffs.append(max(avg_price - K, 0)) #
         else:
-            payoffs.append(max(K - avg_price, 0)) # [cite: 770]
+            payoffs.append(max(K - avg_price, 0)) #
             
-    return np.exp(-r * T) * np.mean(payoffs) # [cite: 771]
+    return np.exp(-r * T) * np.mean(payoffs) #
 
 # --- 2. STREAMLIT UI SETUP ---
 
@@ -144,6 +165,23 @@ if st.sidebar.button("Run Model"):
         price = trinomial_tree(S0, K, T, r, sigma, N, opt_type, opt_style)
 
     st.success(f"Estimated {opt_style} {opt_type} Price: ${price:.4f}")
+
+    # ---> NEW LOGIC: Display Greeks only for Black-Scholes <---
+    if method == "Black-Scholes":
+        st.subheader("Risk Sensitivities (Greeks)")
+        # Map "Call"/"Put" to "C"/"P" because your greek function expects "C"
+        g_type = "C" if opt_type == "Call" else "P"
+        # t=0 assumes we are calculating Greeks for the present day
+        delta, gamma, vega, theta, rho = black_scholes_greek(S0, K, T, 0, r, sigma, g_type)
+        
+        g1, g2, g3, g4, g5 = st.columns(5)
+        g1.metric("Δ Delta", f"{delta:.4f}")
+        g2.metric("Γ Gamma", f"{gamma:.4f}")
+        g3.metric("ν Vega", f"{vega:.4f}")
+        g4.metric("Θ Theta", f"{theta:.4f}")
+        g5.metric("ρ Rho", f"{rho:.4f}")
+        st.divider()
+    # ---> END NEW LOGIC <---
 
     col1, col2 = st.columns(2)
 
