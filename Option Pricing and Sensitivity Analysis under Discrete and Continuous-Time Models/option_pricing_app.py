@@ -107,7 +107,7 @@ if st.sidebar.button("Run Model"):
         
         st.success(f"Black-Scholes {opt_type_label} Price: ${price:.4f}")
         
-            st.subheader("Black-Scholes Greeks")
+        st.subheader("Black-Scholes Greeks")
         g1, g2, g3, g4, g5 = st.columns(5)
         g1.metric("Delta (Δ)", f"{delta:.4f}")
         g2.metric("Gamma (Γ)", f"{gamma:.4f}")
