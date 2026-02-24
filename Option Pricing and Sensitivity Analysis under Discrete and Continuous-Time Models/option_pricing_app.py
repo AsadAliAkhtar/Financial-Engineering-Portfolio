@@ -43,9 +43,23 @@ st.markdown("""
         color: #1e293b !important;
         font-weight: 400 !important;
     }
-    /* Selectbox selected text */
-    [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] span {
+    /* Selectbox — fix visible text in dropdown button and popup */
+    div[data-baseweb="select"] > div {
+        background-color: #ffffff !important;
         color: #0f172a !important;
+    }
+    div[data-baseweb="select"] span {
+        color: #0f172a !important;
+    }
+    div[data-baseweb="popover"] {
+        background-color: #ffffff !important;
+    }
+    div[data-baseweb="popover"] * {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+    }
+    div[data-baseweb="popover"] li:hover {
+        background-color: #eff6ff !important;
     }
     /* Slider value label */
     [data-testid="stSidebar"] .stSlider p {
@@ -76,12 +90,36 @@ st.markdown("""
     h3 { color: #334155 !important; }
     p  { color: #1e293b !important; }
 
-    /* ── Expander ── */
+    /* ── Expander — force white background and dark text ── */
+    [data-testid="stExpander"] {
+        background-color: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
+    }
     [data-testid="stExpander"] summary {
         color: #1e293b !important;
         font-weight: 600;
+        background-color: #ffffff !important;
+    }
+    [data-testid="stExpander"] summary:hover {
+        background-color: #f1f5f9 !important;
+    }
+    [data-testid="stExpander"] > div {
+        background-color: #ffffff !important;
     }
     [data-testid="stExpander"] * {
+        color: #1e293b !important;
+        background-color: transparent !important;
+    }
+    /* Expander table */
+    [data-testid="stExpander"] table {
+        background-color: #ffffff !important;
+    }
+    [data-testid="stExpander"] th {
+        background-color: #f1f5f9 !important;
+        color: #0f172a !important;
+    }
+    [data-testid="stExpander"] td {
         color: #1e293b !important;
     }
 
