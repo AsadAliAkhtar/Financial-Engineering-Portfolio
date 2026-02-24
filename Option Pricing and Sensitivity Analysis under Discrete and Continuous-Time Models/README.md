@@ -11,6 +11,7 @@ The implemented models include:
 - **Black–Scholes Model**
 - **Monte Carlo Simulation (Asian Options)**
 - **Greeks (Sensitivity Analysis)**
+- [**Dashboard**](https://financial-engineering-portfolio-option-pricing.streamlit.app/)
 
 The objective is to compare pricing approaches, analyze convergence behavior, and evaluate risk sensitivities across models.
 
