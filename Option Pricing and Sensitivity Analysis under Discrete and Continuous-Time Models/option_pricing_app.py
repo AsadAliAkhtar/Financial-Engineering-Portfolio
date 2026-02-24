@@ -14,7 +14,7 @@ def black_scholes(S, K, T, r, sigma, opt_type):
         return K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1)
 
 def binomial_tree(S, K, T, r, sigma, N, opt_type, exercise="European"):
-    dt = T / N [cite: 18]
+    dt = T / N
     u = np.exp(sigma * np.sqrt(dt))
     d = 1 / u [cite: 16]
     p = (np.exp(r * dt) - d) / (u - d)
