@@ -16,7 +16,7 @@ def black_scholes(S, K, T, r, sigma, opt_type):
 def binomial_tree(S, K, T, r, sigma, N, opt_type, exercise="European"):
     dt = T / N
     u = np.exp(sigma * np.sqrt(dt))
-    d = 1 / u [cite: 16]
+    d = 1 / u
     p = (np.exp(r * dt) - d) / (u - d)
     
     # Initialize asset prices at maturity
