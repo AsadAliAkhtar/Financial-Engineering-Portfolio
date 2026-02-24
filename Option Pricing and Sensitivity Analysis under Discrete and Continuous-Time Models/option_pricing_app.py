@@ -6,61 +6,61 @@ from scipy.stats import norm
 # --- CORE PRICING FUNCTIONS (Extracted & Cleaned from your Project) ---
 
 def black_scholes(S, K, T, r, sigma, opt_type):
-    d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T)) [cite: 394]
-    d2 = d1 - sigma * np.sqrt(T) [cite: 394]
+    d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
+    d2 = d1 - sigma * np.sqrt(T)
     if opt_type == "Call":
-        return S * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(d2) [cite: 392]
+        return S * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(d2)
     else:
-        return K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1) [cite: 393]
+        return K * np.exp(-r * T) * norm.cdf(-d2) - S * norm.cdf(-d1)
 
 def binomial_tree(S, K, T, r, sigma, N, opt_type, exercise="European"):
     dt = T / N [cite: 18]
-    u = np.exp(sigma * np.sqrt(dt)) [cite: 15]
+    u = np.exp(sigma * np.sqrt(dt))
     d = 1 / u [cite: 16]
-    p = (np.exp(r * dt) - d) / (u - d) [cite: 20]
+    p = (np.exp(r * dt) - d) / (u - d)
     
     # Initialize asset prices at maturity
-    S_tree = S * (u ** np.arange(N, -1, -1)) * (d ** np.arange(0, N + 1, 1)) [cite: 40]
+    S_tree = S * (u ** np.arange(N, -1, -1)) * (d ** np.arange(0, N + 1, 1))
     
     # Option value at maturity
     if opt_type == "Call":
-        C = np.maximum(S_tree - K, 0) [cite: 22]
+        C = np.maximum(S_tree - K, 0)
     else:
-        C = np.maximum(K - S_tree, 0) [cite: 25]
+        C = np.maximum(K - S_tree, 0)
         
     # Backward induction
-    for j in range(N - 1, -1, -1): [cite: 46]
-        C = np.exp(-r * dt) * (p * C[:-1] + (1 - p) * C[1:]) [cite: 50]
+    for j in range(N - 1, -1, -1):
+        C = np.exp(-r * dt) * (p * C[:-1] + (1 - p) * C[1:]) 
         if exercise == "American": [cite: 211]
-            S_curr = S * (u ** np.arange(j, -1, -1)) * (d ** np.arange(0, j + 1, 1)) [cite: 244]
+            S_curr = S * (u ** np.arange(j, -1, -1)) * (d ** np.arange(0, j + 1, 1))
             if opt_type == "Call":
-                C = np.maximum(C, S_curr - K) [cite: 248]
+                C = np.maximum(C, S_curr - K)
             else:
-                C = np.maximum(C, K - S_curr) [cite: 249]
+                C = np.maximum(C, K - S_curr)
     return C[0]
 
 def trinomial_tree(S, K, T, r, sigma, N, opt_type, exercise="European"):
-    dt = T / N [cite: 96]
-    u = np.exp(sigma * np.sqrt(2 * dt)) [cite: 84]
-    d = 1 / u [cite: 84]
+    dt = T / N 
+    u = np.exp(sigma * np.sqrt(2 * dt))
+    d = 1 / u 
     
     # Probability calculations based on project logic
     edr = np.exp(r * dt / 2)
     esig = np.exp(sigma * np.sqrt(dt / 2))
-    pu = ((edr - 1/esig) / (esig - 1/esig))**2 [cite: 86]
-    pd = ((esig - edr) / (esig - 1/esig))**2 [cite: 88]
-    pm = 1 - pu - pd [cite: 90]
+    pu = ((edr - 1/esig) / (esig - 1/esig))**2 
+    pd = ((esig - edr) / (esig - 1/esig))**2 
+    pm = 1 - pu - pd 
     
     # Grid initialization
     S_tree = S * (u ** np.arange(N, -N - 1, -1))
     if opt_type == "Call":
-        C = np.maximum(S_tree - K, 0) [cite: 133]
+        C = np.maximum(S_tree - K, 0) 
     else:
-        C = np.maximum(K - S_tree, 0) [cite: 135]
+        C = np.maximum(K - S_tree, 0) 
         
     for j in range(N - 1, -1, -1):
-        C = np.exp(-r * dt) * (pu * C[:-2] + pm * C[1:-1] + pd * C[2:]) [cite: 92]
-        if exercise == "American": [cite: 327]
+        C = np.exp(-r * dt) * (pu * C[:-2] + pm * C[1:-1] + pd * C[2:]) 
+        if exercise == "American": 
             S_curr = S * (u ** np.arange(j, -j - 1, -1))
             if opt_type == "Call":
                 C = np.maximum(C, S_curr - K)
@@ -69,13 +69,13 @@ def trinomial_tree(S, K, T, r, sigma, N, opt_type, exercise="European"):
     return C[0]
 
 def asian_monte_carlo(S, K, T, r, sigma, N, M, opt_type):
-    dt = T / N [cite: 360]
-    u = np.exp(sigma * np.sqrt(dt)) [cite: 361]
-    d = 1 / u [cite: 363]
-    p = (np.exp(r * dt) - d) / (u - d) [cite: 365]
+    dt = T / N 
+    u = np.exp(sigma * np.sqrt(dt)) 
+    d = 1 / u 
+    p = (np.exp(r * dt) - d) / (u - d) 
     
     payoffs = []
-    for _ in range(M): [cite: 369]
+    for _ in range(M): 
         path = [S]
         for _ in range(N):
             if np.random.rand() < p:
@@ -84,11 +84,11 @@ def asian_monte_carlo(S, K, T, r, sigma, N, M, opt_type):
                 path.append(path[-1] * d)
         avg_price = np.mean(path) [cite: 380]
         if opt_type == "Call":
-            payoffs.append(max(avg_price - K, 0)) [cite: 355]
+            payoffs.append(max(avg_price - K, 0)) 
         else:
-            payoffs.append(max(K - avg_price, 0)) [cite: 356]
+            payoffs.append(max(K - avg_price, 0)) 
             
-    return np.exp(-r * T) * np.mean(payoffs) [cite: 357]
+    return np.exp(-r * T) * np.mean(payoffs) 
 
 # --- STREAMLIT UI SETUP ---
 
@@ -100,19 +100,19 @@ with st.sidebar:
     st.header("Parameters")
     
     # 1. Option Style
-    opt_style = st.selectbox("Option Style", ["European", "American", "Asian"]) [cite: 6, 207, 337]
+    opt_style = st.selectbox("Option Style", ["European", "American", "Asian"]) 
     
     # 2. Method (Conditional Logic)
     if opt_style == "European":
-        method = st.selectbox("Method", ["Binomial", "Trinomial", "Black-Scholes"]) [cite: 7, 76, 384]
+        method = st.selectbox("Method", ["Binomial", "Trinomial", "Black-Scholes"]) 
     elif opt_style == "American":
-        method = st.selectbox("Method", ["Binomial", "Trinomial"]) [cite: 207, 261]
+        method = st.selectbox("Method", ["Binomial", "Trinomial"]) 
     else:
         method = "Monte Carlo"
-        st.info("Asian options priced via Monte Carlo simulation.") [cite: 342]
+        st.info("Asian options priced via Monte Carlo simulation.") 
 
     # 3. Call/Put
-    opt_type = st.selectbox("Type", ["Call", "Put"]) [cite: 21, 24]
+    opt_type = st.selectbox("Type", ["Call", "Put"]) 
     
     # 4. Numerical Inputs
     S0 = st.number_input("Stock Price (S0)", value=100.0)
@@ -164,7 +164,7 @@ if st.sidebar.button("Run Analysis"):
         # Convergence Plot (Only for Tree Methods)
         if method in ["Binomial", "Trinomial"]:
             st.subheader("Convergence Analysis")
-            steps = [10, 20, 50, 100, 150, 200] [cite: 166]
+            steps = [10, 20, 50, 100, 150, 200] 
             prices = []
             for s in steps:
                 if method == "Binomial":
@@ -173,9 +173,9 @@ if st.sidebar.button("Run Analysis"):
                     prices.append(trinomial_tree(S0, K, T, r, sigma, s, opt_type, opt_style))
             
             fig2, ax2 = plt.subplots()
-            ax2.plot(steps, prices, marker='o', linestyle='-') [cite: 176]
-            ax2.set_xlabel("Number of Steps (N)") [cite: 178]
-            ax2.set_ylabel("Option Price") [cite: 179]
+            ax2.plot(steps, prices, marker='o', linestyle='-') 
+            ax2.set_xlabel("Number of Steps (N)") 
+            ax2.set_ylabel("Option Price") 
             st.pyplot(fig2)
         else:
             st.info("Convergence plot is only applicable for discrete tree models.")
