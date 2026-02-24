@@ -13,45 +13,97 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+    /* ── Global base ── */
+    html, body, [class*="css"] {
+        color: #0f172a !important;
+    }
+
     /* ── Main background ── */
     .stApp { background-color: #f8fafc; }
-    .main .block-container { background-color: #f8fafc; }
+    .main .block-container { background-color: #f8fafc; padding-top: 2rem; }
 
     /* ── Sidebar ── */
     [data-testid="stSidebar"] {
         background-color: #ffffff;
-        border-right: 1px solid #e2e8f0;
+        border-right: 2px solid #e2e8f0;
+    }
+    [data-testid="stSidebar"] * {
+        color: #0f172a !important;
+    }
+    [data-testid="stSidebar"] .stSelectbox label,
+    [data-testid="stSidebar"] .stRadio label,
+    [data-testid="stSidebar"] .stSlider label,
+    [data-testid="stSidebar"] .stNumberInput label {
+        color: #1e293b !important;
+        font-weight: 600 !important;
+    }
+    /* Radio and checkbox option text */
+    [data-testid="stSidebar"] .stRadio div[role="radiogroup"] label,
+    [data-testid="stSidebar"] .stCheckbox label {
+        color: #1e293b !important;
+        font-weight: 400 !important;
+    }
+    /* Selectbox selected text */
+    [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] span {
+        color: #0f172a !important;
+    }
+    /* Slider value label */
+    [data-testid="stSidebar"] .stSlider p {
+        color: #374151 !important;
+    }
+    /* Number input text */
+    [data-testid="stSidebar"] input {
+        color: #0f172a !important;
+        background-color: #f8fafc !important;
     }
 
-    /* ── Section header ── */
+    /* ── Section header (sidebar) ── */
     .section-header {
-        color: #1e40af;
-        font-size: 1.05rem;
+        color: #1e40af !important;
+        font-size: 1.0rem;
         font-weight: 700;
         margin: 18px 0 8px;
         padding-bottom: 5px;
         border-bottom: 2px solid #bfdbfe;
     }
 
+    /* ── Main content text ── */
+    .stMarkdown p, .stMarkdown li, .stMarkdown td, .stMarkdown th {
+        color: #1e293b !important;
+    }
+    h1 { color: #0f172a !important; }
+    h2 { color: #1e293b !important; }
+    h3 { color: #334155 !important; }
+    p  { color: #1e293b !important; }
+
+    /* ── Expander ── */
+    [data-testid="stExpander"] summary {
+        color: #1e293b !important;
+        font-weight: 600;
+    }
+    [data-testid="stExpander"] * {
+        color: #1e293b !important;
+    }
+
     /* ── Result block ── */
     .result-block {
         background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-left: 5px solid #3b82f6;
+        border: 1px solid #cbd5e1;
+        border-left: 5px solid #2563eb;
         border-radius: 8px;
         padding: 18px 24px;
         margin-bottom: 14px;
     }
     .result-label {
-        color: #64748b;
+        color: #475569 !important;
         font-size: 0.82rem;
         text-transform: uppercase;
         letter-spacing: 0.07em;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 4px;
     }
     .result-value {
-        color: #0f172a;
+        color: #0f172a !important;
         font-size: 2rem;
         font-weight: 700;
         margin: 0;
@@ -60,7 +112,7 @@ st.markdown("""
     /* ── Greek row ── */
     .greek-row {
         background: #ffffff;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #cbd5e1;
         border-radius: 8px;
         padding: 14px 20px;
         margin-bottom: 10px;
@@ -68,33 +120,38 @@ st.markdown("""
         justify-content: space-between;
         align-items: center;
     }
-    .greek-left { color: #374151; font-weight: 600; font-size: 0.95rem; }
-    .greek-desc { color: #9ca3af; font-size: 0.8rem; }
-    .greek-val { color: #1d4ed8; font-size: 1.2rem; font-weight: 700; }
+    .greek-left { color: #1e293b !important; font-weight: 600; font-size: 0.95rem; }
+    .greek-desc { color: #64748b !important; font-size: 0.8rem; }
+    .greek-val  { color: #1d4ed8 !important; font-size: 1.2rem; font-weight: 700; }
 
     /* ── Info box ── */
     .info-box {
         background: #eff6ff;
-        border-left: 4px solid #3b82f6;
+        border-left: 4px solid #2563eb;
         border-radius: 0 8px 8px 0;
         padding: 12px 16px;
         margin: 10px 0;
         font-size: 0.87rem;
-        color: #1e3a5f;
+        color: #1e3a5f !important;
     }
-    .info-box strong { color: #1d4ed8; }
-
-    /* ── Page title ── */
-    h1 { color: #0f172a !important; }
-    h2 { color: #1e293b !important; }
-    h3 { color: #334155 !important; }
+    .info-box strong { color: #1d4ed8 !important; }
 
     /* ── Divider ── */
-    hr { border-color: #e2e8f0 !important; }
+    hr { border-color: #cbd5e1 !important; }
 
-    /* ── Streamlit text overrides ── */
-    .stMarkdown p { color: #374151; }
-    label { color: #374151 !important; }
+    /* ── Spinner / caption / small text ── */
+    .stCaption, small, .stCaption p {
+        color: #64748b !important;
+    }
+
+    /* ── Checkbox label in main area ── */
+    .stCheckbox label { color: #1e293b !important; }
+
+    /* ── st.spinner text ── */
+    .stSpinner p { color: #1e293b !important; }
+
+    /* ── Placeholder text ── */
+    ::placeholder { color: #94a3b8 !important; }
 </style>
 """, unsafe_allow_html=True)
 
