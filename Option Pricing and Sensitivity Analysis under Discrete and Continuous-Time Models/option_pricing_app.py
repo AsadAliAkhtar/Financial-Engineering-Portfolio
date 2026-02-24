@@ -123,7 +123,7 @@ with st.sidebar:
     
     # UPDATED: Max limit increased to 2000
     if method != "Black-Scholes":
-        N = st.slider("Time Steps (N)", 10, 5000, 100)
+        N = st.slider("Time Steps (N)", 10, 10000, 100)
     else:
         N = 100 # Default if BS selected
         
