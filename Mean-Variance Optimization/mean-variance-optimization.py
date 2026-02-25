@@ -86,7 +86,7 @@ st.markdown("""
 @st.cache_data(show_spinner=False)
 def get_data(tickers: tuple, start: str, end: str) -> pd.DataFrame:
     """Download adjusted close prices from Yahoo Finance."""
-    df = yf.download(list(tickers), start=start, end=end, auto_adjust=True)["Close"]
+    df = yf.download(list(tickers), start=start, end=end, auto_adjust=True, timeout=50)["Close"]
     # If only one ticker is selected, yfinance returns a Series — fix that
     if isinstance(df, pd.Series):
         df = df.to_frame(name=tickers[0])
