@@ -3,3 +3,6 @@ matplotlib
 streamlit
 numpy
 pandas
+yfinance
+pypfopt
+plotly.express
