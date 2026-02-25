@@ -1,9 +1,9 @@
-scipy
-matplotlib
 streamlit
-numpy
-pandas
 yfinance
-pypfopt
-plotly.express
+pandas
+numpy
+matplotlib
 PyPortfolioOpt
+cvxpy
+scipy
+plotly.express
