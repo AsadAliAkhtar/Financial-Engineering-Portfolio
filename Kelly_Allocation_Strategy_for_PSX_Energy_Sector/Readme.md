@@ -221,5 +221,5 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 **Asad** — MFE Candidate, WorldQuant University
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue.svg)](https://linkedin.com/in/YOUR_PROFILE)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black.svg)](https://github.com/YOUR_USERNAME)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue.svg)](https://linkedin.com/in/asadaliakhtar)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black.svg)](https://github.com/AsadAliAkhtar)
