@@ -6,7 +6,7 @@
 
 A quantitative portfolio optimization project that implements the **Kelly Criterion** (continuous multi-asset extension) on Pakistan Stock Exchange (PSX) Oil & Gas stocks using Half Kelly allocation, Ledoit-Wolf shrinkage covariance estimation, and practical position constraints.
 
-![Project Banner](images/banner.png)
+![Project Banner](images/project_banner.png)
 <!-- Replace with your own banner image or remove this line -->
 
 ---
