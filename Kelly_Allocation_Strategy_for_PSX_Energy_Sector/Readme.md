@@ -81,10 +81,7 @@ This is equivalent to **mean-variance optimization with risk aversion λ = 1**. 
 
 ### 2. Data Quality Screening
 
-Identified and excluded **MARI.KA** due to an unadjusted 9:1 stock split on September 5, 2024, which created a spurious -89% daily return:
-
-![MARI Stock Split](images/mari_price_context.png)
-<!-- Screenshot of the price context around 2024-09-05 showing the split -->
+Identified and excluded **MARI.KA** due to an unadjusted 9:1 stock split on September 5, 2024, which created a spurious -89% daily return.
 
 ### 3. Covariance Estimation
 
@@ -95,7 +92,7 @@ $$\hat{\Sigma}_{LW} = (1 - \delta)\hat{\Sigma}_{sample} + \delta \cdot F$$
 - Shrinkage coefficient: **δ = 0.59%** (sample covariance highly reliable with ~1,500 obs / 8 assets)
 - Compared simple vs. shrunk eigenvalue spectra to validate matrix conditioning
 
-![Eigenvalue Spectrum](images/eigenvalue_spectrum.png)
+![Eigenvalue Spectrum](images/eiganvalue_spectrum_plot.jpg)
 <!-- Screenshot of the eigenvalue spectrum plot -->
 
 ### 4. Kelly Optimization
@@ -129,59 +126,6 @@ $$R_p = w^\top \mu + (1 - \mathbf{1}^\top w) \cdot r_f$$
 
 ---
 
-## Project Structure
-
-```
-kelly-criterion-psx-oil-gas/
-│
-├── Kelly_Criterion_Implementation.ipynb    # Main Jupyter notebook
-├── data_series.csv                         # Pakistan T-bill rate data
-├── README.md                              # This file
-├── requirements.txt                       # Python dependencies
-├── LICENSE                                # MIT License
-│
-└── images/                                # Visualizations for README
-    ├── banner.png                         # Project banner
-    ├── growth_of_1pkr.png                 # Cumulative growth chart
-    ├── correlation_heatmap.png            # Stock correlation matrix
-    ├── eigenvalue_spectrum.png            # Simple vs. Ledoit-Wolf eigenvalues
-    ├── mari_price_context.png             # MARI stock split evidence
-    └── portfolio_weights.png              # Final allocation chart
-```
-
----
-
-## Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/kelly-criterion-psx-oil-gas.git
-cd kelly-criterion-psx-oil-gas
-
-# Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### Requirements
-
-```txt
-pandas>=2.0
-numpy>=1.24
-yfinance>=0.2.30
-matplotlib>=3.7
-seaborn>=0.12
-scikit-learn>=1.3
-pypfopt>=1.5
-squarify>=0.4
-```
-
----
-
 ## Usage
 
 ```bash
@@ -202,24 +146,34 @@ Run all cells sequentially. The notebook:
 
 ### Growth of 1 PKR (2020–2025)
 
-![Growth of 1 PKR](images/growth_of_1pkr.png)
+![Growth of 1 PKR](images/growth_of_1pkr_plot.jpg)
 <!-- Screenshot of the cumulative growth chart from cell [45] -->
 
 ATRL.KA delivered the highest total return, turning 1 PKR into 7.03 PKR over 6 years.
 
 ### Correlation Heatmap
 
-![Correlation Heatmap](images/correlation_heatmap.png)
+![Correlation Heatmap](images/correlation_plot.jpg)
 <!-- Screenshot of the correlation heatmap from cell [48] -->
 
 High intra-sector correlations (0.37–0.86) limit diversification within a single-sector universe. OGDC–PPL (0.86) and ATRL–NRL (0.78) are the most correlated pairs.
 
-### Eigenvalue Spectrum
+### Half Kelly Portfolio Allocation (Treemap)
 
-![Eigenvalue Spectrum](images/eigenvalue_spectrum.png)
-<!-- Screenshot of the eigenvalue spectrum from cell [56] -->
+![Half Kelly Treemap Allocation](images/treemap_allocation_plot.jpg)
 
-Near-perfect overlap between simple and Ledoit-Wolf spectra confirms clean, well-conditioned data after removing MARI.
+The treemap visualization reveals the final portfolio structure under Half Kelly with a 20% position cap:
+
+**Allocation Breakdown:**
+- **CASH (50%)** — The dominant position. Half Kelly recommends holding 50% in Pakistan Treasury bills earning 13.51%
+- **Five Energy Stocks (10% each):** APL, ATRL, NRL, OGDC, PSO — all with positive excess returns
+- **Three Excluded Stocks (0%):** PPL, PRL, SSGC — all with negative or near-zero Sharpe ratios
+
+**Key Insight:**
+The 50% cash position is not a risk-management choice — it's a mathematical result. In Pakistan's high-interest-rate environment (rf = 13.51%), the Kelly framework naturally becomes **conservative**. When risk-free assets yield 13.51%, stocks must deliver substantially higher risk-adjusted returns to justify allocation. Most PSX Energy stocks barely clear this hurdle, hence the large cash buffer.
+
+**Why The 20% Cap Matters:**
+Without position limits, ATRL.KA alone would receive 46.7% (Half Kelly). The 20% cap forces diversification across 5 stocks, reducing concentration risk at the cost of ~5% in expected return (22.18% unconstrained → 17.24% constrained). The treemap visually shows this trade-off — the squares are now equal-sized rather than dominated by a single stock.
 
 ---
 
@@ -256,27 +210,6 @@ Near-perfect overlap between simple and Ledoit-Wolf spectra confirms clean, well
 
 ---
 
-## How to Add Images to This README
-
-To insert screenshots from your notebook into this README:
-
-1. **Take screenshots** of the relevant plots/outputs from your Jupyter notebook
-2. **Save them** in the `images/` folder with the filenames referenced above
-3. The image syntax in Markdown is:
-
-```markdown
-![Alt Text](images/filename.png)
-```
-
-**Recommended screenshots to capture:**
-- `growth_of_1pkr.png` — Cell [45] growth chart
-- `correlation_heatmap.png` — Cell [48] heatmap
-- `eigenvalue_spectrum.png` — Cell [56] eigenvalue plot
-- `mari_price_context.png` — Cell [40] output showing the price drop
-- `portfolio_weights.png` — Create a bar chart of final weights (optional addition)
-- `banner.png` — A custom banner (optional, can use the growth chart)
-
----
 
 ## License
 
