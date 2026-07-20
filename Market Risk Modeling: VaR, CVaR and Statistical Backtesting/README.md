@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)]()
 
-![Project Banner](images/project_banner.png)
+![Project Banner](images/Project_Banner.png)
 
 ## Project Overview
 
@@ -117,6 +117,8 @@ These tests evaluate:
 - Whether the observed violation rate matches the expected confidence level.
 - Whether VaR violations occur independently over time.
 - Whether the model satisfies both conditions simultaneously.
+
+![backtesting](images/backtesting.jpg)
 
 ---
 
