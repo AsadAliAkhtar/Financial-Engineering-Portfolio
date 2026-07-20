@@ -118,7 +118,7 @@ These tests evaluate:
 - Whether VaR violations occur independently over time.
 - Whether the model satisfies both conditions simultaneously.
 
-![backtesting](images/backtesting.jpg)
+![backtest](images/backtest.jpg)
 
 ---
 
