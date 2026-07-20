@@ -127,17 +127,6 @@ These tests evaluate:
 
 ---
 
-## Repository Structure
-
-```
-Market-Risk-Modeling/
-│
-├── notebook.ipynb
-├── README.md
-└── images/
-```
-
----
 
 ## Key Takeaways
 
@@ -189,8 +178,5 @@ Some possible extensions include:
 
 ---
 
-## About Me
-
-I recently completed my MSc in Financial Engineering from WorldQuant University. My interests include market risk, portfolio optimization, derivatives pricing, and quantitative finance. This repository is part of my Financial Engineering Portfolio, where I document projects that strengthen my practical understanding of quantitative finance concepts.
 
 If you have any suggestions or feedback, feel free to connect with me on LinkedIn or explore the rest of my GitHub portfolio.
