@@ -1,5 +1,10 @@
 # Market Risk Modeling: Value at Risk (VaR), Expected Shortfall (CVaR) & Statistical Backtesting
 
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
+[![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)]()
+
+![Project Banner](images/project_banner.png)
+
 ## Project Overview
 
 Understanding potential losses is one of the core responsibilities of market risk management. In this project, I built a Python-based framework to estimate and compare portfolio risk using multiple Value at Risk (VaR) and Expected Shortfall (CVaR) methodologies.
